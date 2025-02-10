@@ -11,6 +11,7 @@ import{HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -28,7 +29,9 @@ import { ForgotpasswordComponent } from './component/forgotpassword/forgotpasswo
   imports: [
     BrowserModule,
     AppRoutingModule,
-  HttpClientModule
+  HttpClientModule,
+  FormsModule,
+  ReactiveFormsModule
 
   ],
   providers: [],
