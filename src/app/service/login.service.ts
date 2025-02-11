@@ -8,7 +8,6 @@ import { catchError } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private apiUrl = 'https://api.example.com/auth'; // Replace with your actual API URL
   private loginUrl = 'http://172.16.10.16:8080/api/v1/auth/login';
   private registerUrl = 'http://172.16.10.16:8080/api/v1/auth/register';
 
@@ -31,6 +30,6 @@ export class AuthService {
   // Private error handler
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
-    return Observable.throw(error || 'Something went wrong');
+    throw(error || 'Something went wrong');
   }
 }

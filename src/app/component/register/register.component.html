@@ -4,40 +4,53 @@
   <div class="card p-3" style="width: 100%; max-width: 400px; background-color: #f8d7da; border: 1px solid red;">
     <h2 class="text-center mb-4" style="color: red;">Register</h2>
 
-    <form>
-      <!-- Username input -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Name input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="formExample1">Name</label>
-        <input type="text" id="formExample1" class="form-control" required />
+        <input type="text" id="formExample1" class="form-control" formControlName="name" required />
+        <small *ngIf="form.get('name')?.invalid && form.get('name')?.touched" style="color: red;">
+          Name is required (at least 3 characters)
+        </small>
       </div>
 
       <!-- Email input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="formExample2">Email Address</label>
-        <input type="email" id="formExample2" class="form-control" required />
+        <input type="email" id="formExample2" class="form-control" formControlName="email" required />
+        <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched" style="color: red;">
+          Please enter a valid email
+        </small>
       </div>
 
       <!-- Password input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="formExample3">Password</label>
-        <input type="password" id="formExample3" class="form-control" required />
+        <input type="password" id="formExample3" class="form-control" formControlName="password" required />
+        <small *ngIf="form.get('password')?.invalid && form.get('password')?.touched" style="color: red;">
+          Password must be at least 6 characters
+        </small>
       </div>
 
       <!-- Confirm Password input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="formExample4">Confirm Password</label>
-        <input type="password" id="formExample4" class="form-control" required />
+        <input type="password" id="formExample4" class="form-control" formControlName="confirmPassword" required />
+        <small *ngIf="form.hasError('passwordsMismatch')" style="color: red;">
+          Passwords must match
+        </small>
       </div>
 
       <!-- Submit button -->
       <div class="text-center">
-        <button type="submit" class="btn btn-danger mb-4"[routerLink]="['']" >Register</button>
+        <button type="submit" class="btn btn-danger mb-4" [disabled]="form.invalid" [routerLink]="['/']">Register</button>
+      </div>
+
+      <!-- Error message display -->
+      <div *ngIf="errorMessage" class="text-center" style="color: red;">
+        {{ errorMessage }}
       </div>
 
       <!-- Login link -->
       <div class="text-center">
-        <p>Already a member? <a [routerLink]="['']"style="color: red;">Sign in</a></p>
-      </div>
-    </form>
-  </div>
-</div>
+        
